@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieTrust</title>
+    <link rel="stylesheet" href="movie.css">
+</head>
+            <style>
+
+                #container{
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    padding: 30px 20px;
+                    margin: 20px;
+                    grid-column-gap: 200px;
+                    grid-row-gap: 30px;
+                }
+                #movie-container{
+                    width: 500px;
+                    background-color: #DBD7D6;
+                    padding: 10px;
+                    margin: 20px;
+                    border: none;
+                    border-radius: 20px 10px;
+                }
+
+                #movie-container img{
+                    transform: translateX(100px);
+                    width: 200px;
+
+                }
+                #movie-container h1{
+                    text-align: center;
+                }
+
+                
+@media (max-width: 480px){
+    .toggle-button{
+        display: flex;
+    }
+    .brand-links{
+        display: none;
+    }
+
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+        
+    }
+    .brand-links ul{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .brand-links li{
+        text-align: center;
+        transform: translateX(130px);
+    }
+
+    .brand-links li a{
+        padding: .5rem;
+    }
+    .brand-links li a:hover{
+        background-color: rgba(224, 94, 94, 0.97);
+    }
+
+    .brand-links.active{
+        display: flex;
+    }
+    #movie-container{
+                    width: 300px;
+                    background-color: #DBD7D6;
+                    padding: 10px;
+                    margin: 20px;
+                    border: none;
+                    border-radius: 20px 10px;
+                }
+
+                #movie-container img{
+                    transform: translateX(50px);
+                    width:80px;
+
+                }
+                #ads img{
+                    width: 300px;
+                }
+    
+
+    #container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 30px 20px;
+        margin: 20px;
+        grid-column-gap: 20px;
+        grid-row-gap: 30px;
+}
+
+}
+
+                
+            </style>
+<body>
+
+    <nav class="navbar">
+        <div class="brand-name">MoviesInfo</div>
+
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="brand-links">
+            <ul>
+                <li> <a href="movie.html"> Home</a></li>
+
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+                
+            </ul>
+        </div>
+
+    </nav>
+
+    <div id="container">
+        <div id="movie-container">
+        
+        
+
+        </div>
+
+
+        <div id="ads">
+
+        </div>
+        
+
+    </div>
+    
+    <script>
+
+        //? Toggle the dropdown
+    var togglebtn = document.getElementsByClassName('toggle-button')[0]
+    var brandlink = document.getElementsByClassName('brand-links')[0]
+
+    togglebtn.addEventListener('click', ()=>{
+        brandlink.classList.toggle('active')
+    })
+
+        // Gets the div container
+        let con = document.getElementById("movie-container")
+        let img = document.getElementById("ads")
+        console.log(img)
+
+
+        var data =localStorage.getItem("Data") 
+        var Obj = JSON.parse(data)
+        
+
+        
+
+        var new_img = document.createElement('img')
+        new_img.setAttribute('src', Obj.movie_img)
+        new_img.classList.add('newImg')
+        con.append(new_img)
+
+
+
+        var H1 = document.createElement('h1')
+         H1.innerHTML= Obj.movie_title
+        con.append(H1)
+
+        var pTag = document.createElement('p')
+         pTag.innerHTML= Obj.movie_view
+        con.append(pTag)
+
+        var pTag = document.createElement('p')
+         pTag.innerHTML=    `Release Year: ${Obj.movie_releas}`
+        con.append(pTag)
+
+        
+
+        var pTag = document.createElement('p')
+         pTag.innerHTML=    `IMBD_RATINGS: ${Obj.movie_rating}`
+        con.append(pTag)
+
+
+        var imgAd = document.createElement('img')
+        imgAd.setAttribute('src', Obj.movie_img)
+        img.append(imgAd)
+
+
+       
+        
+        
+
+
+    </script>
+</body>
+</html>
